@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Polanki's Tech Page</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: "Segoe UI", Arial, sans-serif;
+      min-height: 100vh;
+      color: #fff;
+      background:
+        radial-gradient(circle at 15% 20%, rgba(0, 174, 255, .22), transparent 30%),
+        radial-gradient(circle at 85% 80%, rgba(124, 58, 237, .25), transparent 30%),
+        linear-gradient(135deg, #07111f, #101827 55%, #0b1220);
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background-image:
+        linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px);
+      background-size: 40px 40px;
+    }
+
+    header {
+      position: relative;
+      z-index: 2;
+      padding: 28px 7%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid rgba(255,255,255,.09);
+      background: rgba(7, 17, 31, .55);
+      backdrop-filter: blur(14px);
+    }
+
+    .logo {
+      font-size: 1.25rem;
+      font-weight: 700;
+      letter-spacing: .5px;
+    }
+
+    .logo span { color: #38bdf8; }
+
+    nav { display: flex; gap: 10px; }
+
+    nav a {
+      color: #dbeafe;
+      text-decoration: none;
+      padding: 10px 17px;
+      border-radius: 999px;
+      transition: .25s ease;
+      font-weight: 600;
+    }
+
+    nav a:hover {
+      background: rgba(56, 189, 248, .13);
+      color: #7dd3fc;
+      transform: translateY(-2px);
+    }
+
+    main {
+      position: relative;
+      z-index: 1;
+      max-width: 1180px;
+      margin: auto;
+      padding: 90px 7% 70px;
+    }
+
+    .hero {
+      text-align: center;
+      margin-bottom: 70px;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 8px 15px;
+      border: 1px solid rgba(56,189,248,.3);
+      border-radius: 999px;
+      color: #7dd3fc;
+      background: rgba(56,189,248,.07);
+      font-size: .85rem;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      margin-bottom: 24px;
+    }
+
+    h1 {
+      font-size: clamp(3rem, 7vw, 6rem);
+      line-height: .95;
+      letter-spacing: -4px;
+      margin-bottom: 25px;
+      background: linear-gradient(90deg, #fff, #bae6fd 45%, #c4b5fd);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .hero p {
+      max-width: 650px;
+      margin: auto;
+      color: #94a3b8;
+      font-size: 1.15rem;
+      line-height: 1.8;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .card {
+      position: relative;
+      padding: 34px;
+      min-height: 270px;
+      border: 1px solid rgba(255,255,255,.1);
+      border-radius: 24px;
+      background: rgba(255,255,255,.055);
+      backdrop-filter: blur(15px);
+      box-shadow: 0 20px 60px rgba(0,0,0,.18);
+      transition: transform .3s ease, border-color .3s ease, background .3s ease;
+      overflow: hidden;
+    }
+
+    .card::after {
+      content: "";
+      position: absolute;
+      width: 130px;
+      height: 130px;
+      border-radius: 50%;
+      right: -55px;
+      top: -55px;
+      background: var(--accent);
+      opacity: .12;
+      filter: blur(5px);
+    }
+
+    .card:hover {
+      transform: translateY(-9px);
+      border-color: var(--accent);
+      background: rgba(255,255,255,.08);
+    }
+
+    .icon {
+      width: 58px;
+      height: 58px;
+      display: grid;
+      place-items: center;
+      border-radius: 17px;
+      margin-bottom: 25px;
+      font-size: 1.55rem;
+      background: rgba(255,255,255,.08);
+      border: 1px solid rgba(255,255,255,.08);
+    }
+
+    .windows { --accent: #38bdf8; }
+    .terraform { --accent: #a78bfa; }
+    .kubernetes { --accent: #60a5fa; }
+
+    .windows .icon { color: #38bdf8; }
+    .terraform .icon { color: #a78bfa; }
+    .kubernetes .icon { color: #60a5fa; }
+
+    .card h2 {
+      font-size: 1.45rem;
+      margin-bottom: 12px;
+    }
+
+    .card p {
+      color: #94a3b8;
+      line-height: 1.7;
+      margin-bottom: 20px;
+    }
+
+    .explore {
+      color: var(--accent);
+      font-weight: 700;
+      text-decoration: none;
+      font-size: .92rem;
+    }
+
+    footer {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      padding: 30px;
+      color: #64748b;
+      font-size: .9rem;
+    }
+
+    @media (max-width: 800px) {
+      header { flex-direction: column; gap: 18px; }
+      .cards { grid-template-columns: 1fr; }
+      main { padding-top: 60px; }
+      h1 { letter-spacing: -2px; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="logo">Polanki<span>.</span>Tech</div>
+    <nav aria-label="Main navigation">
+      <a href="#windows">Microsoft Windows</a>
+      <a href="#terraform">Terraform</a>
+      <a href="#kubernetes">Kubernetes</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="badge">Technology • Cloud • DevOps</div>
+      <h1>Polanki's Tech Page</h1>
+      <p>
+        A modern space for exploring Microsoft Windows, Infrastructure as Code
+        with Terraform, and cloud-native technologies powered by Kubernetes.
+      </p>
+    </section>
+
+    <section class="cards">
+      <article class="card windows" id="windows">
+        <div class="icon">⊞</div>
+        <h2>Microsoft Windows</h2>
+        <p>Explore Windows administration, configuration, automation, security, and enterprise technologies.</p>
+        <a class="explore" href="#windows">Explore Windows →</a>
+      </article>
+
+      <article class="card terraform" id="terraform">
+        <div class="icon">⌁</div>
+        <h2>Terraform</h2>
+        <p>Discover Infrastructure as Code, reusable modules, Azure resources, automation, and best practices.</p>
+        <a class="explore" href="#terraform">Explore Terraform →</a>
+      </article>
+
+      <article class="card kubernetes" id="kubernetes">
+        <div class="icon">⎈</div>
+        <h2>Kubernetes</h2>
+        <p>Learn about containers, clusters, deployments, services, scaling, and cloud-native operations.</p>
+        <a class="explore" href="#kubernetes">Explore Kubernetes →</a>
+      </article>
+    </section>
+  </main>
+
+  <footer>
+    © 2026 Polanki's Tech Page • Built for technology enthusiasts
+  </footer>
+
+</body>
+</html>
